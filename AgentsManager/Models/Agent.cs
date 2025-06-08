@@ -7,4 +7,6 @@
     private string status { get; set;}
     private int missionsCompleted { get; set;}
 
+    public Agent(int id, string codeName, string realName, string location, string status, int missionCompleted) { }
+
 }
