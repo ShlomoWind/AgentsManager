@@ -17,16 +17,20 @@ internal class AgentDAL
         return cmd;
 
     }
-    private void AddAgent(Agent agent)
+    public void AddAgent(Agent agent)
     {
-        string query = $"INSERT INTO eagleeyedb (id, codeName, realNam, location, status,missionsCompleted) VALUES ({agent.id},{agent.codeName},{agent.realNam},{agent.location},{agent.status},{agent.missionsCompleted})";
-        this.Command(query);
+        string query = $"INSERT INTO agents (id, codeName, realName, location, status,missionsCompleted) VALUES ({agent.id},'{agent.codeName}','{agent.realName}','{agent.location}','{agent.status}',{agent.missionsCompleted})";
+        var cmd = this.Command(query);
+        conn.Open();
+        cmd.ExecuteNonQuery();
+        conn.Close();
     }
-    private List<Agent> GetAllAgents()
+    public List<Agent> GetAllAgents()
     {
-        string query = $"SELECT * FROM eagleeyedb";
+        string query = $"SELECT * FROM agents";
         List<Agent> AllAgents = new List<Agent>();
         var cmd =  this.Command(query);
+        conn.Open();
         MySqlDataReader reader = cmd.ExecuteReader();
         while (reader.Read())
         {
@@ -40,16 +44,23 @@ internal class AgentDAL
                 );
             AllAgents.Add(agent);
         }
+        conn.Close();
         return AllAgents;
     }
-    private void UpdateAgentLocation(int AgentId, string newLocation)
+    public void UpdateAgentLocation(int AgentId, string newLocation)
     {
-        string query = $"UPDATE eagleeyedb location={newLocation} WHERE id={AgentId}";
-        this.Command(query);
+        string query = $"UPDATE agents SET location='{newLocation}' WHERE id={AgentId}";
+        var cmd = this.Command(query);
+        conn.Open();
+        cmd.ExecuteNonQuery();
+        conn.Close();
     }
-    private void DeleteAgent(int agentId)
+    public void DeleteAgent(int agentId)
     {
-        string query = $"DELETE FROM eagleeyedb WHERE id={agentId}";
-        this.Command(query);
+        string query = $"DELETE FROM agents WHERE id={agentId}";
+        var cmd = this.Command(query);
+        conn.Open();
+        cmd.ExecuteNonQuery();
+        conn.Close();
     }
 } 

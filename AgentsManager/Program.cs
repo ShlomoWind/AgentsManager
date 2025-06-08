@@ -10,6 +10,8 @@ namespace AgentsManager
     {
         static void Main(string[] args)
         {
+            AgentDAL dal = new AgentDAL();
+            dal.DeleteAgent(4);
         }
     }
 }
