@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="DAL\AgentDAL.cs" />
     <Compile Include="Models\Agent.cs" />
+    <Compile Include="Models\Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
