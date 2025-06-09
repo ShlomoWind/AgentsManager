@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AgentsManager.Models;
 
 namespace AgentsManager
 {
@@ -10,6 +11,8 @@ namespace AgentsManager
     {
         static void Main(string[] args)
         {
+            Menu menu = new Menu();
+            menu.ShowMenu();
         }
     }
 }
